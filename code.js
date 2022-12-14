@@ -2,25 +2,34 @@
 // import { ScrollTrigger } from "/gsap/dist/ScrollTrigger";
 // import { MotionPathPlugin } from "/gsap/dist/MotionPathPlugin";
 
+import * as THREE from "./node_modules/three/build/three.module.js";
+
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-gsap.set("#rect", { xPercent: -50, yPercent: -50, transformOrigin: "50% 50%" }); // sets rect to be centered
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 
-gsap.to("#rect", {
-  duration: 5,
-  motionPath: {
-    path: "#path",
-    autoRotate: true, // rotates object automatically on curve of path
-    start: 0.25, // start animation at 25% of path
-    end: 0.75, // end animation at 75% of path
-  },
-});
+const renderer = new THREE.WebGLRenderer();
 
-gsap.to("#div", {
-  duration: 5,
-  delay: 2, // delays animation by 2s
-  motionPath: {
-    path: "#path",
-    align: "#path", // aligns div coordinates with the svg ones
-  },
-});
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+camera.position.z = 5;
+
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+
+animate();
