@@ -55,6 +55,7 @@ const loader = new GLTFLoader();
 loader.load(
   "./models/penguinTest3.glb",
   function (gltf) {
+    gltf.scene.scale.set(0.6, 0.6, 0.6);
     scene.add(gltf.scene);
   },
   undefined,
