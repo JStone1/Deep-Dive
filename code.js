@@ -39,23 +39,26 @@ camera.position.z = 5; // adjust camera position
 const controls = new OrbitControls(camera, renderer.domElement); // create controls to move around the scene
 
 // add basic pointlight and set the position
-const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(5, 5, 5);
-scene.add(pointLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff);
+directionalLight.position.set(0, 5, 5);
+scene.add(directionalLight);
 
 // adds in grid and light helpers to help visualise the scene
-const lightHelper = new THREE.PointLightHelper(pointLight);
+const lightHelper = new THREE.DirectionalLightHelper(directionalLight);
 const gridHelper = new THREE.GridHelper(200, 50);
 scene.add(lightHelper, gridHelper);
 
 // initialise GLTF loader
 const loader = new GLTFLoader();
 
+let penguinModel;
+
 // load in penguin model
 loader.load(
   "./models/penguinTest3.glb",
   function (gltf) {
-    gltf.scene.scale.set(0.6, 0.6, 0.6);
+    gltf.scene.scale.set(0.6, 0.6, 0.6); // scales the model before adding to scene
+    penguinModel = gltf;
     scene.add(gltf.scene);
   },
   undefined,
@@ -68,6 +71,8 @@ loader.load(
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
+
+  // penguinModel.scene.rotation.x += 0.5;
 
   controls.update();
 }
