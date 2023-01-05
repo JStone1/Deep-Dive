@@ -25,6 +25,17 @@ body {
   outline: 1px solid red;
   display: flex;
 }
+
+/* .landing-page {
+  width: 100%;
+  height: 100vh;
+  outline: 1px solid red;
+  display: flex;
+} */
+.buffer {
+  height: 100vh;
+}
+
 /* canvas {
   background: url(/images/underwater.jpeg) no-repeat center center;
   background-size: cover;

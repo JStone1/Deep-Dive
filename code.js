@@ -29,7 +29,7 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-camera.position.set(0, 0, 5); // adjust camera position
+camera.position.set(0, 0, 6); // adjust camera position
 
 // code to resize canvas to fit the screen
 const onResize = () => {
@@ -93,6 +93,23 @@ const toLoad = [
     group: new THREE.Group(),
     file: "./models/penguinTest3.glb",
   },
+
+  {
+    name: "whale",
+    group: new THREE.Group(),
+    file: "./models/Killer Whale.glb",
+  },
+
+  {
+    name: "bottle",
+    group: new THREE.Group(),
+    file: "./models/Bottle.glb",
+  },
+  {
+    name: "fish",
+    group: new THREE.Group(),
+    file: "./models/Fish.glb",
+  },
 ];
 
 // object to store models
@@ -100,7 +117,26 @@ const models = {};
 
 const setupAnimation = () => {
   console.log("Setup animation");
-  models.penguin.position.x = 15;
+
+  models.penguin.scale.set(0.5, 0.5, 0.5);
+  models.penguin.rotation.x = 3;
+  models.penguin.rotation.y = 3.1;
+  models.penguin.position.y = 4;
+
+  models.whale.scale.set(0.01, 0.01, 0.01);
+  models.whale.rotation.y = 4.7;
+  models.whale.position.x = 15;
+
+  models.bottle.scale.set(0.1, 0.1, 0.1);
+  models.bottle.rotation.x = 2.5;
+  models.bottle.rotation.z = 3.5;
+  models.bottle.position.y = 0;
+  models.bottle.position.x = -10;
+
+  models.fish.scale.set(0.01, 0.01, 0.01);
+  models.fish.rotation.y = 4.7;
+  models.fish.position.y = 0;
+  models.fish.position.x = 10;
   ScrollTrigger.matchMedia({
     "(prefers-reduced-motion: no-preference)": desktopAnimation,
   });
@@ -108,20 +144,43 @@ const setupAnimation = () => {
 
 const desktopAnimation = () => {
   let section = 0;
-  const tl = new gsap.timeline({
+  // camera.position.x = models.penguin.position.z;
+  const tl = gsap.timeline({
     defaults: {
       duration: 1,
       ease: "power2.inOut",
     },
     scrollTrigger: {
+      markers: true,
       trigger: ".page",
       start: "top top",
       end: "bottom bottom",
-      scrub: 0.1,
+      scrub: 0.5,
     },
   });
   console.log("here", models.penguin);
-  tl.to(models.penguin.position, { x: 1 }, section);
+
+  tl.to(models.penguin.position, { y: 0 }, section);
+  tl.to(models.whale.position, { x: -15 }, section);
+
+  // Section 2
+  section += 1;
+  tl.to(models.bottle.position, { x: -2 }, section);
+  tl.to(models.bottle.position, { y: -1 }, section);
+  tl.to(models.bottle.rotation, { x: -2 }, section);
+
+  // tl.to(models.bottle.position, { x: -12 }, section);
+
+  // Section 3
+  section += 1;
+  tl.to(models.bottle.position, { x: -12 }, section);
+  tl.to(models.bottle.rotation, { x: 4 }, section);
+  tl.to(models.fish.position, { x: 4 }, section);
+
+  // Section 3
+  section += 1;
+
+  tl.to(models.fish.position, { x: 10 }, section);
 };
 
 const LoadingManager = new THREE.LoadingManager(() => {
@@ -133,6 +192,7 @@ const gltfLoader = new GLTFLoader(LoadingManager);
 
 toLoad.forEach((item) => {
   gltfLoader.load(item.file, (model) => {
+    model.scene.scale.set(1, 1, 1);
     model.scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         console.log("Child", child);
