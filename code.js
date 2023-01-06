@@ -54,37 +54,12 @@ directionalLight.position.set(0, 5, 5);
 scene.add(directionalLight);
 
 // adds in grid and light helpers to help visualise the scene
-// const lightHelper = new THREE.DirectionalLightHelper(directionalLight);
-// const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper);
+const lightHelper = new THREE.DirectionalLightHelper(directionalLight);
+const gridHelper = new THREE.GridHelper(200, 50);
+scene.add(lightHelper, gridHelper);
 
-// // initialise GLTF loader
-// const loader = new GLTFLoader();
-
-// let penguinModel;
-// // load in penguin model
-// loader.load(
-//   "./models/penguinTest3.glb",
-//   function (gltf) {
-//     gltf.scene.scale.set(0.6, 0.6, 0.6); // scales the model before adding to scene
-//     penguinModel = gltf;
-//     scene.add(gltf.scene);
-//   },
-//   undefined,
-//   function (error) {
-//     console.error(error);
-//   }
-// );
-
-// animation loops that renders scene to the screen
-function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
-
-  controls.update();
-}
-
-animate();
+const waterTexture = new THREE.TextureLoader().load("./images/underwater.jpeg"); // add callback function to make a loading bar if lots of assets need to be loaded (tutorial 11:20)
+scene.background = waterTexture;
 
 // array that stores objects to be loaded into the screen with name, group and filepath
 const toLoad = [
@@ -120,17 +95,17 @@ const setupAnimation = () => {
 
   models.penguin.scale.set(0.5, 0.5, 0.5);
   models.penguin.rotation.x = 3;
-  models.penguin.rotation.y = 3.1;
   models.penguin.position.y = 4;
 
   models.whale.scale.set(0.01, 0.01, 0.01);
   models.whale.rotation.y = 4.7;
-  models.whale.position.x = 15;
+  models.whale.position.x = 13;
+  models.whale.position.y = 0;
 
   models.bottle.scale.set(0.1, 0.1, 0.1);
   models.bottle.rotation.x = 2.5;
   models.bottle.rotation.z = 3.5;
-  models.bottle.position.y = 0;
+  models.bottle.position.y = 3;
   models.bottle.position.x = -10;
 
   models.fish.scale.set(0.01, 0.01, 0.01);
@@ -147,40 +122,33 @@ const desktopAnimation = () => {
   // camera.position.x = models.penguin.position.z;
   const tl = gsap.timeline({
     defaults: {
-      duration: 1,
-      ease: "power2.inOut",
+      duration: 3,
+      // ease: "power2.inOut",
     },
     scrollTrigger: {
       markers: true,
       trigger: ".page",
       start: "top top",
       end: "bottom bottom",
-      scrub: 0.5,
+      scrub: 0.1,
     },
   });
   console.log("here", models.penguin);
 
   tl.to(models.penguin.position, { y: 0 }, section);
+  tl.to(models.whale.opacity, { opacity: 100 }, section);
   tl.to(models.whale.position, { x: -15 }, section);
 
-  // Section 2
+  // // Section 2
   section += 1;
-  tl.to(models.bottle.position, { x: -2 }, section);
-  tl.to(models.bottle.position, { y: -1 }, section);
-  tl.to(models.bottle.rotation, { x: -2 }, section);
+  tl.to(models.bottle.position, { x: 15 }, section);
 
-  // tl.to(models.bottle.position, { x: -12 }, section);
-
-  // Section 3
+  // // Section 3
   section += 1;
-  tl.to(models.bottle.position, { x: -12 }, section);
-  tl.to(models.bottle.rotation, { x: 4 }, section);
-  tl.to(models.fish.position, { x: 4 }, section);
+  tl.to(models.fish.position, { x: -15 }, section);
 
-  // Section 3
+  // // Section 4
   section += 1;
-
-  tl.to(models.fish.position, { x: 10 }, section);
 };
 
 const LoadingManager = new THREE.LoadingManager(() => {
@@ -205,3 +173,18 @@ toLoad.forEach((item) => {
     models[item.name] = item.group;
   });
 });
+
+// animation loops that renders scene to the screen
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+
+  models.penguin.rotation.y += 0.02;
+
+  models.bottle.rotation.y += 0.02;
+  models.bottle.rotation.x += 0.02;
+
+  controls.update();
+}
+
+animate();

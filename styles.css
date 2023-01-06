@@ -3,6 +3,7 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .canvas-container {
@@ -22,8 +23,30 @@ body {
 .section {
   width: 100%;
   height: 100vh;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
   display: flex;
+}
+
+#path {
+  height: 80vh;
+}
+
+.proxy {
+  width: 400px;
+  background-color: red;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+  color: #eee;
+}
+
+.info h2 {
+  align-self: flex-start;
 }
 
 /* .landing-page {
