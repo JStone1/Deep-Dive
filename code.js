@@ -96,6 +96,7 @@ const setupAnimation = () => {
   models.penguin.scale.set(0.5, 0.5, 0.5);
   models.penguin.rotation.x = 3;
   models.penguin.position.y = 4;
+  models.penguin.position.x = 5;
 
   models.whale.scale.set(0.01, 0.01, 0.01);
   models.whale.rotation.y = 4.7;
@@ -123,7 +124,7 @@ const desktopAnimation = () => {
   const tl = gsap.timeline({
     defaults: {
       duration: 3,
-      // ease: "power2.inOut",
+      ease: "power2.inOut",
     },
     scrollTrigger: {
       markers: true,
@@ -133,21 +134,46 @@ const desktopAnimation = () => {
       scrub: 0.1,
     },
   });
+
   console.log("here", models.penguin);
 
-  tl.to(models.penguin.position, { y: 0 }, section);
-  tl.to(models.whale.opacity, { opacity: 100 }, section);
+  let testText = document.querySelector("#info1");
+
+  // Section 1 (Landing)
+
+  tl.to(models.penguin.position, { x: -5 }, section);
+
+  //  Section 2 (Buffer)
+  section += 1;
+
+  tl.to(models.penguin.position, { x: 0 }, section);
+
+  // Section 3 (Predators)
+
+  section += 1;
+
   tl.to(models.whale.position, { x: -15 }, section);
 
-  // // Section 2
+  // Section 4 (Buffer)
+  section += 1;
+
+  // Section 5 (Plastic)
+
   section += 1;
   tl.to(models.bottle.position, { x: 15 }, section);
 
-  // // Section 3
+  //  Section 6 (Buffer)
+  section += 1;
+
+  // Section 7 (Overfishing)
+
   section += 1;
   tl.to(models.fish.position, { x: -15 }, section);
 
-  // // Section 4
+  // Section 8 (Buffer)
+  section += 1;
+
+  // Section 9 (End)
   section += 1;
 };
 
