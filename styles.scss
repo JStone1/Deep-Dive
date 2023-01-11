@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: #eee;
+  /* font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif; */
+  font-family: "Julius Sans One", sans-serif;
+}
+
+.canvas-container {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.page {
+  position: relative;
+  z-index: 2;
+}
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto auto;
+}
+
+.landing-page p {
+  font-size: 1em;
+}
+
+.arrow {
+  font-size: 4em;
+  animation: moveArrow ease-in-out infinite 3s;
+}
+
+@keyframes moveArrow {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 0.2em);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.buffer {
+  display: flex;
+  flex-direction: column;
+  height: 200vh;
+  outline: 1px solid red;
+}
+
+.section {
+  width: 100%;
+  height: 100vh;
+  outline: 1px solid red;
+  display: flex;
+}
+
+.info {
+  position: relative;
+  top: 20%;
+  left: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 450px;
+  color: #eee;
+  font-size: 2em;
+  opacity: 0;
+}

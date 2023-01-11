@@ -52,10 +52,15 @@ const directionalLight = new THREE.DirectionalLight("#daecf7");
 directionalLight.position.set(0, 0, 5);
 scene.add(directionalLight);
 
+// const pointLight = new THREE.PointLight("red");
+// pointLight.position.set(0, 5, 10);
+// scene.add(pointLight);
+
 // adds in grid and light helpers to help visualise the scene
-// const lightHelper = new THREE.DirectionalLightHelper(directionalLight);
+// const DLightHelper = new THREE.DirectionalLightHelper(directionalLight);
+// const PLightHelper = new THREE.PointLightHelper(pointLight);
 // const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper);
+// scene.add(DLightHelper, PLightHelper, gridHelper);
 
 const waterTexture = new THREE.TextureLoader().load(
   "./images/underwater3.jpeg"
@@ -68,6 +73,12 @@ const toLoad = [
     name: "penguin",
     group: new THREE.Group(),
     file: "./models/penguinTest3.glb",
+  },
+
+  {
+    name: "ice",
+    group: new THREE.Group(),
+    file: "./models/iceblock2.glb",
   },
 
   {
@@ -101,9 +112,20 @@ const setupAnimation = () => {
   console.log("Setup animation");
 
   models.penguin.scale.set(0.5, 0.5, 0.5);
-  // models.penguin.rotation.x = 4.5;
-  models.penguin.position.y = 3;
-  models.penguin.position.x = 7;
+  models.penguin.rotation.x = 4.5;
+  models.penguin.rotation.x = 0.6;
+  models.penguin.rotation.y = 4.4;
+  models.penguin.position.y = 3.5;
+  models.penguin.position.x = 4.3;
+
+  // models.penguin.position.y = 3;
+  // models.penguin.position.x = 7;
+
+  models.ice.scale.set(2, 2, 2);
+  models.ice.rotation.x = 0.5;
+  models.ice.rotation.y = 1.3;
+  models.ice.position.x = 6.5;
+  models.ice.position.y = 2.6;
 
   models.whale.scale.set(0.01, 0.01, 0.01);
   models.whale.rotation.y = 4.7;
@@ -153,13 +175,16 @@ const desktopAnimation = () => {
 
   // ROTATION X: TOP TO BOTTOM - "6" FULL TURN
   // ROTATION Y: SWIVEL TO SIDE ANTI-CLOCKWISE - "6" FULL TURN
-  // ROTATION X: TOP TO BOTTOM - "6.3" FULL TURN
+  // ROTATION Z: TOP TO BOTTOM - "6.3" FULL TURN
 
   // Section 1 (Landing)
 
   tl.to(models.penguin.position, { y: 0 }, section);
   tl.to(models.penguin.position, { x: 0 }, section);
+  // tl.to(models.penguin.rotation, { x: -3 }, section);
+  // tl.to(models.penguin.rotation, { y: 0 }, section);
   tl.to(models.penguin.rotation, { z: 3.15 }, section);
+  tl.to(models.ice.position, { y: 6.15 }, section);
 
   tl.to(testText, { opacity: 1 }, section - 1);
   tl.to(testText, { y: 200, ease: "slow.in" }, section - 1);
