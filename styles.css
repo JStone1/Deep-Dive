@@ -55,15 +55,21 @@ body {
 
 .info {
   position: relative;
-  top: 20%;
-  left: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 450px;
+  max-width: 600px;
   color: #eee;
-  font-size: 2em;
+  font-size: 1.7em;
   opacity: 0; }
+
+.text1 {
+  top: 60%;
+  right: 20%; }
+
+.text2 {
+  top: 90%;
+  left: 50%; }
+
+.text3 {
+  top: 20%;
+  left: 30%; }
 
 /*# sourceMappingURL=styles.css.map */

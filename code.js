@@ -171,7 +171,9 @@ const desktopAnimation = () => {
 
   console.log("here", models.penguin);
 
-  let testText = document.querySelector(".info");
+  let text1 = document.querySelector(".text1");
+  let text2 = document.querySelector(".text2");
+  let text3 = document.querySelector(".text3");
 
   // ROTATION X: TOP TO BOTTOM - "6" FULL TURN
   // ROTATION Y: SWIVEL TO SIDE ANTI-CLOCKWISE - "6" FULL TURN
@@ -185,12 +187,13 @@ const desktopAnimation = () => {
   // tl.to(models.penguin.rotation, { y: 0 }, section);
   tl.to(models.penguin.rotation, { z: 3.15 }, section);
   tl.to(models.ice.position, { y: 6.15 }, section);
-
-  tl.to(testText, { opacity: 1 }, section - 1);
-  tl.to(testText, { y: 200, ease: "slow.in" }, section - 1);
+  tl.to(text1, { opacity: 1 }, section - 1);
+  tl.to(text1, { y: 200, ease: "slow.in" }, section - 1);
 
   //  Section 2 (Buffer)
   section += 2;
+  tl.to(text2, { opacity: 1 }, section - 1);
+  tl.to(text2, { y: 100, ease: "slow.in" }, section - 1);
 
   // Section 3 (Predators)
 
@@ -205,6 +208,9 @@ const desktopAnimation = () => {
   // Section 4 (Buffer)
   section += 2;
   tl.to(models.whale2.position, { x: 15 }, section - 1);
+
+  tl.to(text3, { opacity: 1 }, section - 1);
+  tl.to(text3, { y: 400, ease: "slow.inOut" }, section - 1);
 
   // Section 5 (Plastic)
 
