@@ -209,6 +209,8 @@ const desktopAnimation = () => {
   let text1 = document.querySelector(".text1");
   let text2 = document.querySelector(".text2");
   let text3 = document.querySelector(".text3");
+  let text4 = document.querySelector(".text4");
+  let text5 = document.querySelector(".text5");
 
   let infoText = document.querySelector(".info");
 
@@ -253,6 +255,9 @@ const desktopAnimation = () => {
   mainTL.to(models.tin.position, { x: -12 }, section);
   mainTL.to(models.tin.position, { y: -1 }, section);
 
+  mainTL.to(text4, { opacity: 1 }, section + 1);
+  mainTL.to(text4, { y: 200, ease: "slow.in" }, section + 1);
+
   // Section 5 (Plastic)
 
   section += 2;
@@ -267,9 +272,11 @@ const desktopAnimation = () => {
   mainTL.to(models.penguin.rotation, { x: 0.5 }, section);
   mainTL.to(models.penguin.rotation, { y: 18 }, section);
 
+  mainTL.to(text5, { opacity: 1 }, section + 1);
+  mainTL.to(text5, { y: 300, ease: "slow.in" }, section + 1);
+
   //  Section 6 (Buffer)
   section += 2;
-  mainTL.to(models.fish.position, { x: -15 }, section);
 
   // Section 7 (Overfishing)
 
@@ -280,6 +287,8 @@ const desktopAnimation = () => {
 
   mainTL.to(models.penguin.rotation, { x: 0 }, section);
   mainTL.to(models.penguin.rotation, { y: 26 }, section);
+
+  mainTL.to(models.fish.position, { x: -15 }, section);
 
   // Section 8 (Buffer)
   section += 2;
