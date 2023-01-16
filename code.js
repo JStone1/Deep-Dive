@@ -52,9 +52,9 @@ const directionalLight = new THREE.DirectionalLight("#daecf7");
 directionalLight.position.set(0, 0, 5);
 scene.add(directionalLight);
 
-// const pointLight = new THREE.PointLight("red");
-// pointLight.position.set(0, 5, 10);
-// scene.add(pointLight);
+const pointLight = new THREE.PointLight("lightblue");
+pointLight.position.set(0, 15, 5);
+scene.add(pointLight);
 
 // adds in grid and light helpers to help visualise the scene
 // const DLightHelper = new THREE.DirectionalLightHelper(directionalLight);
@@ -76,9 +76,9 @@ const toLoad = [
   },
 
   {
-    name: "ice",
+    name: "iceberg",
     group: new THREE.Group(),
-    file: "./models/iceblock2.glb",
+    file: "./models/iceberg.glb",
   },
 
   {
@@ -98,6 +98,18 @@ const toLoad = [
     group: new THREE.Group(),
     file: "./models/Bottle.glb",
   },
+
+  {
+    name: "tin",
+    group: new THREE.Group(),
+    file: "./models/tin.glb",
+  },
+
+  {
+    name: "can",
+    group: new THREE.Group(),
+    file: "./models/can.glb",
+  },
   {
     name: "fish",
     group: new THREE.Group(),
@@ -115,17 +127,17 @@ const setupAnimation = () => {
   models.penguin.rotation.x = 4.5;
   models.penguin.rotation.x = 0.6;
   models.penguin.rotation.y = 4.4;
-  models.penguin.position.y = 3.5;
-  models.penguin.position.x = 4.3;
+  models.penguin.position.y = 5.5;
+  models.penguin.position.x = 6.3;
 
   // models.penguin.position.y = 3;
   // models.penguin.position.x = 7;
 
-  models.ice.scale.set(2, 2, 2);
-  models.ice.rotation.x = 0.5;
-  models.ice.rotation.y = 1.3;
-  models.ice.position.x = 6.5;
-  models.ice.position.y = 2.6;
+  models.iceberg.scale.set(4, 4, 4);
+  models.iceberg.rotation.x = 0;
+  models.iceberg.rotation.y = 5.7;
+  models.iceberg.position.x = 9.5;
+  models.iceberg.position.y = 4.6;
 
   models.whale.scale.set(0.01, 0.01, 0.01);
   models.whale.rotation.y = -4.7;
@@ -142,6 +154,16 @@ const setupAnimation = () => {
   models.bottle.rotation.z = 3.5;
   models.bottle.position.y = 3;
   models.bottle.position.x = -12;
+
+  models.tin.rotation.x = -2.5;
+  models.tin.rotation.z = -3.5;
+  models.tin.position.y = -3;
+  models.tin.position.x = 12;
+
+  models.can.rotation.x = -2.5;
+  models.can.rotation.z = -3.5;
+  models.can.position.y = -5;
+  models.can.position.x = 1;
 
   models.fish.scale.set(0.01, 0.01, 0.01);
   models.fish.rotation.y = 4.7;
@@ -170,14 +192,13 @@ const desktopAnimation = () => {
   });
   console.log("here", models.penguin);
 
-  // tween that darkens the background image from 100% to 60% as you scroll down
+  // tween that darkens the background image from 100% to 50% as you scroll down
   gsap.fromTo(
     container,
     { filter: "brightness(100%)" },
     {
-      filter: "brightness(60%)",
+      filter: "brightness(40%)",
       scrollTrigger: {
-        markers: true,
         start: "top 1%",
         end: "bottom 99%",
         scrub: 0.1,
@@ -202,7 +223,7 @@ const desktopAnimation = () => {
   // tl.to(models.penguin.rotation, { x: -3 }, section);
   // tl.to(models.penguin.rotation, { y: 0 }, section);
   mainTL.to(models.penguin.rotation, { z: 3.15 }, section);
-  mainTL.to(models.ice.position, { y: 6.15 }, section);
+  mainTL.to(models.iceberg.position, { y: 10.15 }, section);
   mainTL.to(text1, { opacity: 1 }, section - 1);
   mainTL.to(text1, { y: 300, ease: "slow.in" }, section - 1);
   // mainTL.to(container, { opacity: 0 }, section + 10);
@@ -229,10 +250,16 @@ const desktopAnimation = () => {
   mainTL.to(text3, { opacity: 1 }, section - 1);
   mainTL.to(text3, { y: 400, ease: "slow.inOut" }, section - 1);
 
+  mainTL.to(models.tin.position, { x: -12 }, section);
+  mainTL.to(models.tin.position, { y: -1 }, section);
+
   // Section 5 (Plastic)
 
   section += 2;
-  mainTL.to(models.bottle.position, { x: 15 }, section);
+  mainTL.to(models.bottle.position, { x: 12 }, section);
+
+  mainTL.to(models.can.position, { x: -10 }, section);
+  mainTL.to(models.can.position, { y: -1 }, section);
 
   mainTL.to(models.penguin.position, { y: 1.5 }, section);
   mainTL.to(models.penguin.position, { x: 3.5 }, section);
@@ -299,6 +326,12 @@ function animate() {
 
   models.bottle.rotation.y += 0.02;
   models.bottle.rotation.x += 0.02;
+
+  models.tin.rotation.y += 0.05;
+  models.tin.rotation.z += 0.01;
+
+  models.can.rotation.y += 0.05;
+  models.can.rotation.x += 0.02;
 
   controls.update();
 }
