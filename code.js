@@ -88,9 +88,9 @@ const toLoad = [
   },
 
   {
-    name: "whale2",
+    name: "shark",
     group: new THREE.Group(),
-    file: "./models/Killer Whale.glb",
+    file: "./models/shark.glb",
   },
 
   {
@@ -114,6 +114,12 @@ const toLoad = [
     name: "fish",
     group: new THREE.Group(),
     file: "./models/Fish.glb",
+  },
+
+  {
+    name: "fish2",
+    group: new THREE.Group(),
+    file: "./models/Fish3.glb",
   },
 ];
 
@@ -144,10 +150,10 @@ const setupAnimation = () => {
   models.whale.position.x = -13;
   models.whale.position.y = 1.7;
 
-  models.whale2.scale.set(0.005, 0.005, 0.005);
-  models.whale2.rotation.y = 4.7;
-  models.whale2.position.x = 15;
-  models.whale2.position.y = -2;
+  models.shark.scale.set(0.03, 0.03, 0.03);
+  models.shark.rotation.y = 4.7;
+  models.shark.position.x = 15;
+  models.shark.position.y = -2;
 
   models.bottle.scale.set(0.1, 0.1, 0.1);
   models.bottle.rotation.x = 2.5;
@@ -169,6 +175,11 @@ const setupAnimation = () => {
   models.fish.rotation.y = 4.7;
   models.fish.position.y = 0;
   models.fish.position.x = 10;
+
+  models.fish2.scale.set(0.1, 0.1, 0.1);
+  models.fish2.rotation.y = 4.7;
+  models.fish2.position.y = 0;
+  models.fish2.position.x = 10;
   ScrollTrigger.matchMedia({
     "(prefers-reduced-motion: no-preference)": desktopAnimation,
   });
@@ -197,7 +208,7 @@ const desktopAnimation = () => {
     container,
     { filter: "brightness(100%)" },
     {
-      filter: "brightness(40%)",
+      filter: "brightness(30%)",
       scrollTrigger: {
         start: "top 1%",
         end: "bottom 99%",
@@ -211,6 +222,9 @@ const desktopAnimation = () => {
   let text3 = document.querySelector(".text3");
   let text4 = document.querySelector(".text4");
   let text5 = document.querySelector(".text5");
+  let text6 = document.querySelector(".text6");
+  let text7 = document.querySelector(".text7");
+  let text8 = document.querySelector(".text8");
 
   let infoText = document.querySelector(".info");
 
@@ -247,7 +261,7 @@ const desktopAnimation = () => {
 
   // Section 4 (Buffer)
   section += 2;
-  mainTL.to(models.whale2.position, { x: -15 }, section - 1);
+  mainTL.to(models.shark.position, { x: -15 }, section - 1);
 
   mainTL.to(text3, { opacity: 1 }, section - 1);
   mainTL.to(text3, { y: 400, ease: "slow.inOut" }, section - 1);
@@ -255,8 +269,8 @@ const desktopAnimation = () => {
   mainTL.to(models.tin.position, { x: -12 }, section);
   mainTL.to(models.tin.position, { y: -1 }, section);
 
-  mainTL.to(text4, { opacity: 1 }, section + 1);
-  mainTL.to(text4, { y: 200, ease: "slow.in" }, section + 1);
+  mainTL.to(text4, { opacity: 1 }, section + 1.5);
+  mainTL.to(text4, { y: 200, ease: "slow.in" }, section + 1.5);
 
   // Section 5 (Plastic)
 
@@ -289,9 +303,17 @@ const desktopAnimation = () => {
   mainTL.to(models.penguin.rotation, { y: 26 }, section);
 
   mainTL.to(models.fish.position, { x: -15 }, section);
+  mainTL.to(text6, { opacity: 1 }, section);
+  mainTL.to(text6, { y: 300, ease: "slow.in" }, section);
 
   // Section 8 (Buffer)
   section += 2;
+  mainTL.to(models.fish2.position, { x: -15 }, section);
+  mainTL.to(text7, { opacity: 1 }, section);
+  mainTL.to(text7, { y: 200, ease: "slow.in" }, section);
+
+  mainTL.to(text8, { opacity: 1 }, section + 2);
+  mainTL.to(text8, { y: 300, ease: "slow.in" }, section + 2);
 
   // Section 9 (End)
   section += 2;

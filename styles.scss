@@ -63,13 +63,13 @@ body {
   display: flex;
   flex-direction: column;
   height: 200vh;
-  outline: 1px solid red;
+  // outline: 1px solid red;
 }
 
 .section {
   width: 100%;
   height: 100vh;
-  outline: 1px solid red;
+  // outline: 1px solid red;
   display: flex;
 }
 
@@ -102,10 +102,25 @@ body {
 
 .text4 {
   top: 30%;
-  right: 25%;
+  left: 5%;
 }
 
 .text5 {
   top: 5%;
+  left: 43%;
+}
+
+.text6 {
+  top: 15%;
+  left: 40%;
+}
+
+.text7 {
+  top: 20%;
+  left: 10%;
+}
+
+.text8 {
+  top: 60%;
   left: 60%;
 }
