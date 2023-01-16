@@ -128,14 +128,14 @@ const setupAnimation = () => {
   models.ice.position.y = 2.6;
 
   models.whale.scale.set(0.01, 0.01, 0.01);
-  models.whale.rotation.y = 4.7;
-  models.whale.position.x = 13;
-  models.whale.position.y = 2.7;
+  models.whale.rotation.y = -4.7;
+  models.whale.position.x = -13;
+  models.whale.position.y = 1.7;
 
   models.whale2.scale.set(0.005, 0.005, 0.005);
-  models.whale2.rotation.y = -4.7;
-  models.whale2.position.x = -15;
-  models.whale2.position.y = -3;
+  models.whale2.rotation.y = 4.7;
+  models.whale2.position.x = 15;
+  models.whale2.position.y = -2;
 
   models.bottle.scale.set(0.1, 0.1, 0.1);
   models.bottle.rotation.x = 2.5;
@@ -155,7 +155,7 @@ const setupAnimation = () => {
 const desktopAnimation = () => {
   let section = 0;
   // camera.position.x = models.penguin.position.z;
-  const tl = gsap.timeline({
+  const mainTL = gsap.timeline({
     defaults: {
       duration: 3,
       ease: "power2.inOut",
@@ -168,12 +168,28 @@ const desktopAnimation = () => {
       scrub: 0.1,
     },
   });
-
   console.log("here", models.penguin);
+
+  // tween that darkens the background image from 100% to 60% as you scroll down
+  gsap.fromTo(
+    container,
+    { filter: "brightness(100%)" },
+    {
+      filter: "brightness(60%)",
+      scrollTrigger: {
+        markers: true,
+        start: "top 1%",
+        end: "bottom 99%",
+        scrub: 0.1,
+      },
+    }
+  );
 
   let text1 = document.querySelector(".text1");
   let text2 = document.querySelector(".text2");
   let text3 = document.querySelector(".text3");
+
+  let infoText = document.querySelector(".info");
 
   // ROTATION X: TOP TO BOTTOM - "6" FULL TURN
   // ROTATION Y: SWIVEL TO SIDE ANTI-CLOCKWISE - "6" FULL TURN
@@ -181,61 +197,62 @@ const desktopAnimation = () => {
 
   // Section 1 (Landing)
 
-  tl.to(models.penguin.position, { y: 0 }, section);
-  tl.to(models.penguin.position, { x: 0 }, section);
+  mainTL.to(models.penguin.position, { y: 0 }, section);
+  mainTL.to(models.penguin.position, { x: 0 }, section);
   // tl.to(models.penguin.rotation, { x: -3 }, section);
   // tl.to(models.penguin.rotation, { y: 0 }, section);
-  tl.to(models.penguin.rotation, { z: 3.15 }, section);
-  tl.to(models.ice.position, { y: 6.15 }, section);
-  tl.to(text1, { opacity: 1 }, section - 1);
-  tl.to(text1, { y: 200, ease: "slow.in" }, section - 1);
+  mainTL.to(models.penguin.rotation, { z: 3.15 }, section);
+  mainTL.to(models.ice.position, { y: 6.15 }, section);
+  mainTL.to(text1, { opacity: 1 }, section - 1);
+  mainTL.to(text1, { y: 300, ease: "slow.in" }, section - 1);
+  // mainTL.to(container, { opacity: 0 }, section + 10);
 
   //  Section 2 (Buffer)
   section += 2;
-  tl.to(text2, { opacity: 1 }, section - 1);
-  tl.to(text2, { y: 100, ease: "slow.in" }, section - 1);
 
   // Section 3 (Predators)
 
   section += 2;
-  tl.to(models.penguin.position, { y: 0 }, section);
-  tl.to(models.penguin.position, { x: -4.5 }, section);
-  tl.to(models.penguin.rotation, { x: 1 }, section);
-  tl.to(models.penguin.rotation, { y: 8 }, section);
+  mainTL.to(models.penguin.position, { y: 0 }, section);
+  mainTL.to(models.penguin.position, { x: -4.5 }, section);
+  mainTL.to(models.penguin.rotation, { x: 1 }, section);
+  mainTL.to(models.penguin.rotation, { y: 8 }, section);
 
-  tl.to(models.whale.position, { x: -15 }, section - 1);
+  mainTL.to(models.whale.position, { x: 15 }, section - 1);
+  mainTL.to(text2, { opacity: 1 }, section - 2);
+  mainTL.to(text2, { y: 300, ease: "slow.in" }, section - 2);
 
   // Section 4 (Buffer)
   section += 2;
-  tl.to(models.whale2.position, { x: 15 }, section - 1);
+  mainTL.to(models.whale2.position, { x: -15 }, section - 1);
 
-  tl.to(text3, { opacity: 1 }, section - 1);
-  tl.to(text3, { y: 400, ease: "slow.inOut" }, section - 1);
+  mainTL.to(text3, { opacity: 1 }, section - 1);
+  mainTL.to(text3, { y: 400, ease: "slow.inOut" }, section - 1);
 
   // Section 5 (Plastic)
 
   section += 2;
-  tl.to(models.bottle.position, { x: 15 }, section);
+  mainTL.to(models.bottle.position, { x: 15 }, section);
 
-  tl.to(models.penguin.position, { y: 1.5 }, section);
-  tl.to(models.penguin.position, { x: 3.5 }, section);
+  mainTL.to(models.penguin.position, { y: 1.5 }, section);
+  mainTL.to(models.penguin.position, { x: 3.5 }, section);
 
-  tl.to(models.penguin.rotation, { x: 0.5 }, section);
-  tl.to(models.penguin.rotation, { y: 18 }, section);
+  mainTL.to(models.penguin.rotation, { x: 0.5 }, section);
+  mainTL.to(models.penguin.rotation, { y: 18 }, section);
 
   //  Section 6 (Buffer)
   section += 2;
-  tl.to(models.fish.position, { x: -15 }, section);
+  mainTL.to(models.fish.position, { x: -15 }, section);
 
   // Section 7 (Overfishing)
 
   section += 2;
 
-  tl.to(models.penguin.position, { y: 1 }, section);
-  tl.to(models.penguin.position, { x: -1.5 }, section);
+  mainTL.to(models.penguin.position, { y: 1 }, section);
+  mainTL.to(models.penguin.position, { x: -1.5 }, section);
 
-  tl.to(models.penguin.rotation, { x: 0 }, section);
-  tl.to(models.penguin.rotation, { y: 26 }, section);
+  mainTL.to(models.penguin.rotation, { x: 0 }, section);
+  mainTL.to(models.penguin.rotation, { y: 26 }, section);
 
   // Section 8 (Buffer)
   section += 2;
@@ -243,11 +260,11 @@ const desktopAnimation = () => {
   // Section 9 (End)
   section += 2;
 
-  tl.to(models.penguin.position, { y: -5 }, section);
-  tl.to(models.penguin.position, { x: 12 }, section);
+  mainTL.to(models.penguin.position, { y: -5 }, section);
+  mainTL.to(models.penguin.position, { x: 12 }, section);
 
-  tl.to(models.penguin.rotation, { x: -1 }, section);
-  tl.to(models.penguin.rotation, { y: 30 }, section);
+  mainTL.to(models.penguin.rotation, { x: -1 }, section);
+  mainTL.to(models.penguin.rotation, { y: 30 }, section);
 };
 
 const LoadingManager = new THREE.LoadingManager(() => {
