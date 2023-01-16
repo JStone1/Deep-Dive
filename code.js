@@ -163,12 +163,12 @@ const setupAnimation = () => {
 
   models.tin.rotation.x = -2.5;
   models.tin.rotation.z = -3.5;
-  models.tin.position.y = -3;
-  models.tin.position.x = 12;
+  models.tin.position.y = -5.5;
+  models.tin.position.x = 0;
 
   models.can.rotation.x = -2.5;
   models.can.rotation.z = -3.5;
-  models.can.position.y = -5;
+  models.can.position.y = -6;
   models.can.position.x = 1;
 
   models.fish.scale.set(0.01, 0.01, 0.01);
@@ -246,6 +246,8 @@ const desktopAnimation = () => {
 
   //  Section 2 (Buffer)
   section += 2;
+  mainTL.to(text2, { opacity: 1 }, section - 1);
+  mainTL.to(text2, { y: 300, ease: "slow.in" }, section - 1);
 
   // Section 3 (Predators)
 
@@ -255,9 +257,7 @@ const desktopAnimation = () => {
   mainTL.to(models.penguin.rotation, { x: 1 }, section);
   mainTL.to(models.penguin.rotation, { y: 8 }, section);
 
-  mainTL.to(models.whale.position, { x: 15 }, section - 1);
-  mainTL.to(text2, { opacity: 1 }, section - 2);
-  mainTL.to(text2, { y: 300, ease: "slow.in" }, section - 2);
+  mainTL.to(models.whale.position, { x: 15 }, section - 2);
 
   // Section 4 (Buffer)
   section += 2;
@@ -266,8 +266,8 @@ const desktopAnimation = () => {
   mainTL.to(text3, { opacity: 1 }, section - 1);
   mainTL.to(text3, { y: 400, ease: "slow.inOut" }, section - 1);
 
-  mainTL.to(models.tin.position, { x: -12 }, section);
-  mainTL.to(models.tin.position, { y: -1 }, section);
+  mainTL.to(models.tin.position, { x: 6 }, section);
+  mainTL.to(models.tin.position, { y: 6 }, section + 1);
 
   mainTL.to(text4, { opacity: 1 }, section + 1.5);
   mainTL.to(text4, { y: 200, ease: "slow.in" }, section + 1.5);
@@ -276,6 +276,7 @@ const desktopAnimation = () => {
 
   section += 2;
   mainTL.to(models.bottle.position, { x: 12 }, section);
+  mainTL.to(models.bottle.position, { y: 1 }, section);
 
   mainTL.to(models.can.position, { x: -10 }, section);
   mainTL.to(models.can.position, { y: -1 }, section);
