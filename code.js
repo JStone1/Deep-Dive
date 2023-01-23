@@ -110,7 +110,7 @@ const toLoad = [
   {
     name: "penguin",
     group: new THREE.Group(),
-    file: "./models/penguinTest3.glb",
+    file: "./models/penguin11.glb",
   },
 
   {
