@@ -7,10 +7,26 @@
     <title>Document</title>
     <link href="/styles.css" rel="stylesheet" />
   </head>
+  <script
+    src="https://kit.fontawesome.com/c7ab0cffa1.js"
+    crossorigin="anonymous"
+  ></script>
+  <script type="module" src="/code.js"></script>
   <!-- <canvas id="background"></canvas> -->
   <body>
     <div class="canvas-container"></div>
     <div class="page">
+      <div class="audio-desc">
+        <span class="audio-disabled"
+          ><i class="fa-solid fa-volume-xmark fa-2xl"></i
+        ></span>
+        <span class="audio-enabled hidden">
+          <i class="fa-solid fa-volume-high fa-2xl"></i
+        ></span>
+
+        <p>For the best experience enable audio</p>
+      </div>
+
       <section class="section title-page">
         <h1>Deep Dive</h1>
         <p>Scroll down</p>
@@ -75,7 +91,6 @@
       </section>
     </div>
 
-    <script type="module" src="/code.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/MotionPathPlugin.min.js"></script>

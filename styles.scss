@@ -30,6 +30,25 @@ body {
   z-index: 2;
 }
 
+.audio-desc {
+  position: fixed;
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  font-size: 0.6em;
+}
+
+.audio-desc i {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
 .title-page {
   display: flex;
   flex-direction: column;
@@ -42,8 +61,12 @@ body {
   font-size: 1em;
 }
 
+.title-page h1 {
+  font-size: 3em;
+}
+
 .arrow {
-  font-size: 4em;
+  font-size: 3em;
   animation: moveArrow ease-in-out infinite 3s;
 }
 

@@ -30,6 +30,44 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.set(0, 0, 6); // adjust camera position
 
+const audioListener = new THREE.AudioListener();
+camera.add(audioListener);
+const backgroundAudio = new THREE.Audio(audioListener);
+
+const audioLoader = new THREE.AudioLoader();
+function playAudio() {
+  audioLoader.load("./audio/bgMusic.mp3", function (buffer) {
+    backgroundAudio.setBuffer(buffer);
+    backgroundAudio.setLoop(true);
+    backgroundAudio.setVolume(0.5);
+    backgroundAudio.play();
+  });
+}
+
+function pauseAudio() {
+  backgroundAudio.pause();
+}
+
+let audioDisabled = document.getElementsByClassName("audio-disabled")[0];
+console.log(audioDisabled);
+
+let audioEnabled = document.getElementsByClassName("audio-enabled")[0];
+console.log(audioEnabled);
+
+audioDisabled.addEventListener("click", () => {
+  audioDisabled.classList.toggle("hidden");
+  audioEnabled.classList.toggle("hidden");
+  console.log(audioDisabled.classList);
+  playAudio();
+});
+
+audioEnabled.addEventListener("click", () => {
+  audioDisabled.classList.toggle("hidden");
+  audioEnabled.classList.toggle("hidden");
+  console.log(audioEnabled.classList);
+  pauseAudio();
+});
+
 // code to resize canvas to fit the screen
 const onResize = () => {
   size.width = container.clientWidth;
@@ -194,7 +232,7 @@ const desktopAnimation = () => {
       ease: "power2.inOut",
     },
     scrollTrigger: {
-      markers: true,
+      // markers: true,
       trigger: ".page",
       start: "top top",
       end: "bottom bottom",
