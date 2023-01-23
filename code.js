@@ -114,6 +114,12 @@ const toLoad = [
   },
 
   {
+    name: "penguin2",
+    group: new THREE.Group(),
+    file: "./models/penguin11.glb",
+  },
+
+  {
     name: "iceberg",
     group: new THREE.Group(),
     file: "./models/iceberg.glb",
@@ -218,6 +224,11 @@ const setupAnimation = () => {
   models.fish2.rotation.y = 4.7;
   models.fish2.position.y = 0;
   models.fish2.position.x = 10;
+
+  models.penguin2.scale.set(0.5, 0.5, 0.5);
+
+  models.penguin2.position.x = 0;
+  models.penguin2.position.y = -14;
   ScrollTrigger.matchMedia({
     "(prefers-reduced-motion: no-preference)": desktopAnimation,
   });
@@ -362,6 +373,8 @@ const desktopAnimation = () => {
 
   mainTL.to(models.penguin.rotation, { x: -1 }, section);
   mainTL.to(models.penguin.rotation, { y: 30 }, section);
+
+  mainTL.to(models.penguin2.position, { y: -4.8 }, section + 3);
 };
 
 const LoadingManager = new THREE.LoadingManager(() => {

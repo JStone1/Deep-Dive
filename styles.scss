@@ -52,7 +52,7 @@ body {
 .title-page {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin: auto auto;
 }
@@ -146,4 +146,19 @@ body {
 .text8 {
   top: 60%;
   left: 65%;
+}
+
+.info-links {
+  color: #eee;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.info-links li {
+  margin: 10px;
+}
+
+.info-links a:visited {
+  color: #eee;
+  text-decoration: none;
 }
