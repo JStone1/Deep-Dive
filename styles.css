@@ -42,15 +42,19 @@ body {
 .title-page {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   margin: auto auto; }
 
 .title-page p {
-  font-size: 1em; }
+  font-size: 1em;
+  margin: 10px; }
 
 .title-page h1 {
   font-size: 3em; }
+
+.end-page {
+  justify-content: space-around; }
 
 .arrow {
   font-size: 3em;
@@ -74,12 +78,44 @@ body {
   display: flex; }
 
 .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   max-width: 600px;
   color: #eee;
   font-size: 1.7em;
-  opacity: 0; }
+  opacity: 0;
+  cursor: pointer;
+  height: fit-content; }
 
+.popup {
+  position: absolute;
+  top: 100%;
+  font-size: 0.5em;
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  background-color: rgba(131, 155, 223, 0.3);
+  animation: showPopup 1s ease-in-out; }
+
+.popup-text::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(131, 155, 223, 0.3) transparent transparent transparent;
+  transform: rotate(180deg); }
+
+@keyframes showPopup {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 .text1 {
   top: 60%;
   right: 20%; }

@@ -257,7 +257,7 @@ const desktopAnimation = () => {
     container,
     { filter: "brightness(100%)" },
     {
-      filter: "brightness(30%)",
+      filter: "brightness(50%)",
       scrollTrigger: {
         start: "top 1%",
         end: "bottom 99%",
@@ -265,6 +265,31 @@ const desktopAnimation = () => {
       },
     }
   );
+
+  let info = document.querySelectorAll(".info");
+  console.log(info);
+
+  let popups = document.getElementsByClassName("popup");
+  console.log(popups);
+
+  info.forEach((infoText) => {
+    infoText.addEventListener("mouseenter", () => {
+      for (let i = 0; i < popups.length; i++) {
+        if (infoText.classList.contains(`text${i}`)) {
+          console.log(`text${i}`);
+          console.log(popups[i]);
+          popups[i - 1].classList.remove("hidden");
+        }
+      }
+    });
+    infoText.addEventListener("mouseleave", () => {
+      for (let i = 0; i < popups.length; i++) {
+        if (popups[i]) {
+          popups[i].classList.add("hidden");
+        }
+      }
+    });
+  });
 
   let text1 = document.querySelector(".text1");
   let text2 = document.querySelector(".text2");
@@ -368,12 +393,11 @@ const desktopAnimation = () => {
   // Section 9 (End)
   section += 2;
 
-  mainTL.to(models.penguin.position, { y: -5 }, section);
-  mainTL.to(models.penguin.position, { x: 12 }, section);
+  mainTL.to(models.penguin.position, { y: -5 }, section + 2);
+  mainTL.to(models.penguin.position, { x: 12 }, section + 2);
 
-  mainTL.to(models.penguin.rotation, { x: -1 }, section);
-  mainTL.to(models.penguin.rotation, { y: 30 }, section);
-
+  mainTL.to(models.penguin.rotation, { x: -1 }, section + 1);
+  mainTL.to(models.penguin.rotation, { y: 30 }, section + 1);
   mainTL.to(models.penguin2.position, { y: -4.8 }, section + 3);
 };
 
