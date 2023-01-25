@@ -160,6 +160,26 @@ body {
 }
 
 .text1 {
+  animation: easeIn 3s infinite;
+}
+
+.text1:hover {
+  animation: none;
+}
+
+@keyframes easeIn {
+  0% {
+    font-size: 1.75em;
+  }
+  50% {
+    font-size: 1.8em;
+  }
+  100% {
+    font-size: 1.75em;
+  }
+}
+
+.text1 {
   top: 60%;
   right: 20%;
 }
