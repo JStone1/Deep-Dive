@@ -30,11 +30,14 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.set(0, 0, 6); // adjust camera position
 
+// code for creating background audio in the scene
 const audioListener = new THREE.AudioListener();
 camera.add(audioListener);
 const backgroundAudio = new THREE.Audio(audioListener);
 
 const audioLoader = new THREE.AudioLoader();
+
+// adjusts the sound and plays bg music
 function playAudio() {
   audioLoader.load("./audio/bgMusic.mp3", function (buffer) {
     backgroundAudio.setBuffer(buffer);
@@ -44,16 +47,19 @@ function playAudio() {
   });
 }
 
+// pauses background noise
 function pauseAudio() {
   backgroundAudio.pause();
 }
 
+// variables for managing the audio element
 let audioDisabled = document.getElementsByClassName("audio-disabled")[0];
 console.log(audioDisabled);
 
 let audioEnabled = document.getElementsByClassName("audio-enabled")[0];
 console.log(audioEnabled);
 
+// event listeners for the audio toggles
 audioDisabled.addEventListener("click", () => {
   audioDisabled.classList.toggle("hidden");
   audioEnabled.classList.toggle("hidden");
@@ -170,6 +176,7 @@ const toLoad = [
 // object to store models
 const models = {};
 
+// setup for the initial size and positions of the models
 const setupAnimation = () => {
   console.log("Setup animation");
 
@@ -234,6 +241,7 @@ const setupAnimation = () => {
   });
 };
 
+// main timeline for the webpage
 const desktopAnimation = () => {
   let section = 0;
   // camera.position.x = models.penguin.position.z;
@@ -266,6 +274,7 @@ const desktopAnimation = () => {
     }
   );
 
+  // code for managing the popups of all the info on the page
   let info = document.querySelectorAll(".info");
   let popups = document.getElementsByClassName("popup");
 
@@ -286,6 +295,7 @@ const desktopAnimation = () => {
     });
   });
 
+  // variables to store each text element on page (needs refactoring)
   let text1 = document.querySelector(".text1");
   let text2 = document.querySelector(".text2");
   let text3 = document.querySelector(".text3");
@@ -295,23 +305,14 @@ const desktopAnimation = () => {
   let text7 = document.querySelector(".text7");
   let text8 = document.querySelector(".text8");
 
-  let infoText = document.querySelector(".info");
-
-  // ROTATION X: TOP TO BOTTOM - "6" FULL TURN
-  // ROTATION Y: SWIVEL TO SIDE ANTI-CLOCKWISE - "6" FULL TURN
-  // ROTATION Z: TOP TO BOTTOM - "6.3" FULL TURN
-
   // Section 1 (Landing)
 
   mainTL.to(models.penguin.position, { y: 0 }, section);
   mainTL.to(models.penguin.position, { x: 0 }, section);
-  // tl.to(models.penguin.rotation, { x: -3 }, section);
-  // tl.to(models.penguin.rotation, { y: 0 }, section);
   mainTL.to(models.penguin.rotation, { z: 3.15 }, section);
   mainTL.to(models.iceberg.position, { y: 10.15 }, section);
   mainTL.to(text1, { opacity: 1 }, section - 1);
   mainTL.to(text1, { y: 300, ease: "slow.in" }, section - 1);
-  // mainTL.to(container, { opacity: 0 }, section + 10);
 
   //  Section 2 (Buffer)
   section += 2;
@@ -403,6 +404,7 @@ const LoadingManager = new THREE.LoadingManager(() => {
 
 const gltfLoader = new GLTFLoader(LoadingManager);
 
+// loop that runs through each model in array and loads them into the scene
 toLoad.forEach((item) => {
   gltfLoader.load(item.file, (model) => {
     model.scene.scale.set(1, 1, 1);
