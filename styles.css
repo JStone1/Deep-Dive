@@ -83,7 +83,9 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  max-width: 600px;
+  max-width: 500px;
+  text-align: center;
+  line-height: 40px;
   color: #eee;
   font-size: 1.7em;
   opacity: 0;
@@ -96,9 +98,11 @@ body {
   font-size: 0.5em;
   padding: 10px;
   border-radius: 10px;
-  width: fit-content;
+  max-width: 100%;
   background-color: rgba(131, 155, 223, 0.3);
-  animation: showPopup 1s ease-in-out; }
+  animation: showPopup 1s ease-in-out;
+  text-align: center;
+  line-height: 25px; }
 
 .popup-text::after {
   content: "";
@@ -148,16 +152,15 @@ body {
   top: 60%;
   left: 65%; }
 
-.info-links {
+a {
   color: #eee;
-  text-decoration: none;
-  margin: 10px; }
+  text-decoration: underline; }
 
 .info-links li {
-  margin: 10px; }
+  margin: 40px; }
 
-.info-links a:visited {
+a:visited {
   color: #eee;
-  text-decoration: none; }
+  text-decoration: underline; }
 
 /*# sourceMappingURL=styles.css.map */

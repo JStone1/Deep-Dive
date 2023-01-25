@@ -267,23 +267,18 @@ const desktopAnimation = () => {
   );
 
   let info = document.querySelectorAll(".info");
-  console.log(info);
-
   let popups = document.getElementsByClassName("popup");
-  console.log(popups);
 
   info.forEach((infoText) => {
     infoText.addEventListener("mouseenter", () => {
-      for (let i = 0; i < popups.length; i++) {
+      for (let i = 0; i <= popups.length; i++) {
         if (infoText.classList.contains(`text${i}`)) {
-          console.log(`text${i}`);
-          console.log(popups[i]);
           popups[i - 1].classList.remove("hidden");
         }
       }
     });
     infoText.addEventListener("mouseleave", () => {
-      for (let i = 0; i < popups.length; i++) {
+      for (let i = 0; i <= popups.length; i++) {
         if (popups[i]) {
           popups[i].classList.add("hidden");
         }
