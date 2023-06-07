@@ -54,23 +54,23 @@ function pauseAudio() {
 
 // variables for managing the audio element
 let audioDisabled = document.getElementsByClassName("audio-disabled")[0];
-console.log(audioDisabled);
+// console.log(audioDisabled);
 
 let audioEnabled = document.getElementsByClassName("audio-enabled")[0];
-console.log(audioEnabled);
+// console.log(audioEnabled);
 
 // event listeners for the audio toggles
 audioDisabled.addEventListener("click", () => {
   audioDisabled.classList.toggle("hidden");
   audioEnabled.classList.toggle("hidden");
-  console.log(audioDisabled.classList);
+  // console.log(audioDisabled.classList);
   playAudio();
 });
 
 audioEnabled.addEventListener("click", () => {
   audioDisabled.classList.toggle("hidden");
   audioEnabled.classList.toggle("hidden");
-  console.log(audioEnabled.classList);
+  // console.log(audioEnabled.classList);
   pauseAudio();
 });
 
@@ -178,7 +178,7 @@ const models = {};
 
 // setup for the initial size and positions of the models
 const setupAnimation = () => {
-  console.log("Setup animation");
+  // console.log("Setup animation");
 
   models.penguin.scale.set(0.5, 0.5, 0.5);
   models.penguin.rotation.x = 4.5;
@@ -258,7 +258,7 @@ const desktopAnimation = () => {
       scrub: 0.1,
     },
   });
-  console.log("here", models.penguin);
+  // console.log("here", models.penguin);
 
   // tween that darkens the background image from 100% to 50% as you scroll down
   gsap.fromTo(
@@ -398,7 +398,7 @@ const desktopAnimation = () => {
 };
 
 const LoadingManager = new THREE.LoadingManager(() => {
-  console.log("Loading manager");
+  // console.log("Loading manager");
   setupAnimation();
 });
 
@@ -410,7 +410,7 @@ toLoad.forEach((item) => {
     model.scene.scale.set(1, 1, 1);
     model.scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        console.log("Child", child);
+        // console.log("Child", child);
         child.receiveShadow = true;
         child.castShadow = true;
       }
