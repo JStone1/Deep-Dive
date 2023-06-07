@@ -2,7 +2,7 @@
 // import { ScrollTrigger } from "/gsap/dist/ScrollTrigger";
 // import { MotionPathPlugin } from "/gsap/dist/MotionPathPlugin";
 
-import * as THREE from "node_modules/three/build/three.module.js";
+import * as THREE from "/node_modules/three/build/three.module.js";
 import { OrbitControls } from "./vendor_mods/three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "./vendor_mods/three/examples/jsm/controls/GLTFLoader.js";
 
