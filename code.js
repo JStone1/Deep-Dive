@@ -128,7 +128,7 @@ const toLoad = [
   {
     name: "iceberg",
     group: new THREE.Group(),
-    file: "./models/iceberg.glb",
+    file: "./models/Iceberg.glb",
   },
 
   {
@@ -140,7 +140,7 @@ const toLoad = [
   {
     name: "shark",
     group: new THREE.Group(),
-    file: "./models/shark.glb",
+    file: "./models/Shark.glb",
   },
 
   {
@@ -152,13 +152,13 @@ const toLoad = [
   {
     name: "tin",
     group: new THREE.Group(),
-    file: "./models/tin.glb",
+    file: "./models/Tin.glb",
   },
 
   {
     name: "can",
     group: new THREE.Group(),
-    file: "./models/can.glb",
+    file: "./models/Can.glb",
   },
   {
     name: "fish",
@@ -427,15 +427,20 @@ function animate() {
   renderer.render(scene, camera);
 
   // models.penguin.rotation.y += 0.03;
+  if (models.bottle) {
+    models.bottle.rotation.y += 0.02;
+    models.bottle.rotation.x += 0.02;
+  }
 
-  models.bottle.rotation.y += 0.02;
-  models.bottle.rotation.x += 0.02;
+  if (models.tin) {
+    models.tin.rotation.y += 0.05;
+    models.tin.rotation.z += 0.01;
+  }
 
-  models.tin.rotation.y += 0.05;
-  models.tin.rotation.z += 0.01;
-
-  models.can.rotation.y += 0.05;
-  models.can.rotation.x += 0.02;
+  if (models.can) {
+    models.can.rotation.y += 0.05;
+    models.can.rotation.x += 0.02;
+  }
 
   controls.update();
 }
