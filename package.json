@@ -13,8 +13,5 @@
   "dependencies": {
     "gsap": "^3.11.3",
     "three": "^0.147.0"
-  },
-  "devDependencies": {
-    "@types/three": "^0.152.1"
   }
 }
